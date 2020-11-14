@@ -5,7 +5,7 @@ import datetime
 
 
 
-vk = vk_api.VkApi(token="919e919e3815b66463acace0ec808f8e88d010e3e2863477fb93d1542a70cdc48245ee3622e9318f7320c")
+vk = vk_api.VkApi(token="db0e54fc7ee1bf36fa925657dcbb597ef9bc3b941909a1c7852659a65f03d93b22dcda1120e2bd7ecca00")
 longpoll = VkBotLongPoll(vk, '197891905')
 vk = vk.get_api()
 _eng_chars = u"~!@#$%^&qwertyuiop[]asdfghjkl;'zxcvbnm,./QWERTYUIOP{}ASDFGHJKL:\"|ZXCVBNM<>?"
