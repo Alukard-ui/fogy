@@ -21,3 +21,4 @@ while True:
             peer_ida = event.object.message['peer_id']
             reply = event.object.message['date']
             linka = event.object.message['attachments']
+            vk.messages.send(random_id = get_random_id(), peer_id = peer_ida, message = "Чемпион")
