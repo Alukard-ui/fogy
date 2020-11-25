@@ -6,14 +6,16 @@ import datetime
 
 
 
-vk = vk_api.VkApi(token="18010856fa0fdeb10105ba7c978752b588545bdd1de7b4262675e8d465d9be4ab9d78667fd7516cfe5b76")
-longpoll = VkBotLongPoll(vk, '199445412')
+vk = vk_api.VkApi(token="b21626b6a9e092ae79a192433cf734034757323ff67c234be0120bcf076f9792f22da0d43230445372156")
+longpoll = VkBotLongPoll(vk,'189309602')
 vk = vk.get_api()
 
 print('Бот запущен')
 
-start = VkKeyboard(one_time=True)
-start.add_button('Я из ПУНКа')
+start = VkKeyboard(one_time=False)
+start.add_button('Я из ПУНКа',color=VkKeyboardColor.POSITIVE)
+start.add_line()
+start.add_button('Из Петергофа',color=VkKeyboardColor.POSITIVE)
 
 kb = VkKeyboard(one_time=False)
 
@@ -29,26 +31,31 @@ kb.add_line()
 kb.add_button('Играть', color=VkKeyboardColor.DEFAULT)
 
 
+
 while True:
     for event in longpoll.listen():
-        if event.type == VkBotEventType.GROUP_JOIN:
-            user_ida = event.object.message['peer_id']
-            print(user_ida)
-            vk.messages.send(
-                random_id=get_random_id(),
-                user_id = user_ida,
-                keyboard=start.get_keyboard(),
-                message='выбирай'
-            )
         if event.type == VkBotEventType.MESSAGE_NEW:
             request = event.object.message['text'].lower()
             peer_ida = event.object.message['peer_id']
             reply = event.object.message['date']
             linka = event.object.message['attachments']
-            if request == "лох":
+            if request == "начать":
                 vk.messages.send(
                     random_id=get_random_id(),
                     peer_id=peer_ida,
-                    keyboard = kb.get_keyboard(),
-                    message='выбирай'
+                    keyboard=start.get_keyboard(),
+                    message='Откуда ты?'
+                )
+
+            if request == "я из пунка":
+                vk.messages.send(
+                    random_id=get_random_id(),
+                    peer_id = peer_ida,
+                    message =  'Привет ПУНКУ от FOGGY FROG 🐸'
+                                'Наверняка думаешь, зачем попал в этот чат. Не переживай, мы ответим на все вопросы, но только лично 🙃\n\n'
+                                'Приходи к нам на дымный отдых с друзьями, но для начала взгляни, что тебя ждёт :'
+                                '📲 Instagram.com/foggyfrog.spb'
+                                'Да, ты прав, у нас есть все - PS4, море игр, любимые напитки и вкусные кальяны 😏💨\n\n'
+                                'Мы ждём по адресу 📍Чичеринская, 2 - да, верно, это в 10-ти минутах от тебя\n\n'
+                                'Не забудь забронировать лучший столик по номеру 📲 89627226225 '
                 )
