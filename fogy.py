@@ -6,7 +6,7 @@ import datetime
 
 
 
-vk = vk_api.VkApi(token="b21626b6a9e092ae79a192433cf734034757323ff67c234be0120bcf076f9792f22da0d43230445372156")
+vk = vk_api.VkApi(token=Token)
 longpoll = VkBotLongPoll(vk,'189309602')
 vk = vk.get_api()
 
